@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+        function Ninja(name){
+          var self = this;
+          self.name = name;
+          self.health = 100;
+          var speed = 3;
+          var strength = 3;
+          self.sayName = function(){
+            console.log("My name is " + this.name);
+          }
+          self.showStats = function(){
+            console.log("Health: " + this.health + " Spead: " + speed + " Strength: " + strength);
+          }
+          self.drinkSake = function(){
+            this.health +=10;
+          }
+          self.giveStrength = function() {
+            return strength
+          }
+        }
+
+        Ninja.prototype.punch = function(anotherNinja){
+          if(anotherNinja instanceof Ninja) {
+              anotherNinja.health -= 5;
+              console.log(anotherNinja.name + ` was punched by ${this.name} ` + 5);
+          } else {
+            return false
+          }
+        }
+        Ninja.prototype.kick = function(anotherNinja){
+          if(anotherNinja.constructor == Ninja) {
+              anotherNinja.health -= (5*this.giveStrength());
+              console.log(anotherNinja.name + ` was kicked by ${this.name} ` + 5*this.giveStrength() );
+          } else {
+            return false
+          }
+        }
+        var newNinja = new Ninja("dirchik")
+        newNinja.sayName()
+        newNinja.showStats()
+        newNinja.drinkSake()
+
+        var billGates = new Ninja("bill Gates")
+
+        billGates.sayName()
+        billGates.showStats()
+        billGates.drinkSake()
+
+        billGates.punch(newNinja)
+        newNinja.sayName()
+        newNinja.showStats()
+
+        billGates.kick(newNinja)
+        newNinja.sayName()
+        newNinja.showStats()
+
+
+    </script>
+  </body>
+</html>
