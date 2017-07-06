@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <button type="button" onclick="newGame()">New Game</button><br>
+    <h2>Dealer<span id="dscore" style="float:right"></span></h2>
+    <div id="cards"></div>
+    <div id="message" style="font-size:22px;color:red;text-align:center;">
+
+    </div>
+    <h2>Player <span id="pscore" style="float:right"></span></h2>
+    <div id="cardsp"></div>
+
+    <button type="button" onclick="x.clear('cardsp');y.takeCard(x.deal()); x.render('cardsp', y.hand); whoWon()">Hit</button>
+    <button type="button" onclick="dTurn();whoWon(true)">Dealer's turn</button>
+
+
+      <script type="text/javascript">
+
+        class Deck{
+          constructor(){
+              this.deck = [];
+          }
+          shuffle(){
+            var shuffle = this.deck.length
+            var temp, rc;
+            while (shuffle) {
+                rc = Math.ceil(Math.random()*shuffle)-1;
+                temp = this.deck[shuffle-1]
+                this.deck[shuffle-1] = this.deck[rc]
+                this.deck[rc] = temp
+                shuffle--
+            }
+          }
+          reset(){
+            this.deck = [];
+            var cardsTypes = [
+              "ace",
+              2, 3, 4, 5, 6, 7, 8, 9, 10,
+              "jack", "queen", "king"
+            ];
+            var suits = ["clubs","diamonds","hearts","spades"];
+
+              for (var y = 0; y < suits.length; y++) {
+                for (var i = 0; i < cardsTypes.length; i++) {
+                this.deck.push(
+                  {
+                    "suit": suits[y], "type": cardsTypes[i]
+                  });
+                }
+              }
+          }
+          deal(){
+            var dlength = this.deck.length
+            var rc = Math.ceil(Math.random()*dlength)-1;
+            var card = this.deck[rc]
+            for (var i = rc; i < dlength-1; i++) {
+              this.deck[i] = this.deck[i+1]
+            }
+              this.deck.length = dlength-1
+            // console.log(card);
+            return card;
+          }
+          render(selector,cards=this.deck,dealer=false){
+            var s = document.getElementById(selector);
+            var img;
+            if(!dealer){
+              for (var i = 0; i < cards.length; i++) {
+                img = document.createElement('img');
+                img.src=`cards/${cards[i].type}_of_${cards[i].suit}.png`
+                img.width=`90`
+                s.appendChild(img);
+              }
+            } else {
+              img = document.createElement('img');
+              img.src=`cards/back.png`
+              img.width=`90`
+              s.appendChild(img);
+              img = document.createElement('img');
+              img.src=`cards/${cards[1].type}_of_${cards[1].suit}.png`
+              img.width=`90`
+              s.appendChild(img);
+            }
+          }
+          clear(selector){
+            var d = document.getElementById(selector);
+
+            d.innerHTML = ""
+            return
+          }
+          numcards(){
+            console.log(this.deck.length);
+            return
+          }
+        }
+
+
+
+        class Player{
+          constructor(name){
+            this.name = name;
+            this.hand = [];
+          }
+          takeCard(card){
+            this.hand.push(card);
+            return
+          }
+          discardCard(){
+            this.hand.pop()
+            return
+          }
+          showCard(){
+            console.log(this.hand)
+            return
+          }
+          emptyHand(){
+            this.hand = []
+            return
+          }
+        }
+
+        // Creating deck of cards
+        var x = new Deck();
+        x.reset();
+        x.shuffle();
+
+        // Player
+        var y = new Player("Yarik")
+        // Dealer
+        var d = new Player("Dealer")
+
+        function newGame(){
+          x.clear("message")
+          x.clear("pscore")
+          x.clear("dscore")
+          x.clear("cards")
+          x.clear("cardsp")
+
+          y.emptyHand()
+          y.takeCard( x.deal() );
+          y.takeCard( x.deal() );
+          x.render("cardsp", y.hand)
+
+          d.emptyHand()
+          d.takeCard( x.deal() );
+          d.takeCard( x.deal() );
+          // x.render("cards", d.hand)
+          x.render("cards", d.hand, true)
+
+          whoWon();
+        }
+
+        function dTurn(){
+          x.clear("cards")
+          if(true){
+            d.takeCard( x.deal() );
+            x.render("cards", d.hand)
+          }
+        }
+
+        function whoWon(dsshow=false){
+          var pScore = 0, dScore = 0;
+          var values = {
+            'ace': 11,
+            'jack': 10,
+            'queen': 10,
+            'king': 10,
+            1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10
+          }
+          // dealer score
+          for (let i = 0; i < d.hand.length; i++) {
+            if(d.hand[i].type == 'ace'){
+              var tempScore = dScore + values[d.hand[i].type]
+              if( tempScore > 21 ) {
+                dScore += 1
+              } else {
+                dScore += 11
+              }
+            } else { dScore += values[d.hand[i].type] }
+          }
+          // player score
+          for (let i = 0; i < y.hand.length; i++) {
+            if(y.hand[i].type == 'ace'){
+              var tempScore = pScore + values[y.hand[i].type]
+              if( tempScore > 21 ) {
+                pScore += 1
+              } else {
+                pScore += 11
+              }
+            } else {pScore += values[y.hand[i].type] }
+          }
+          pscore = document.getElementById('pscore')
+          dscore = document.getElementById('dscore')
+
+          pscore.innerHTML = pScore;
+          if(dsshow) {
+            dscore.innerHTML = dScore;
+          }
+          m = document.getElementById('message')
+
+          if (dScore > 21) { m.innerHTML ="Dealer is lost" }
+          else if (dScore == 21) { m.innerHTML ="Dealer won!" }
+
+          if (pScore > 21) { m.innerHTML ="Player is lost" }
+          else if (pScore == 21) { m.innerHTML ="Player won!" }
+        }
+
+
+      </script>
+
+      <style media="screen">
+        #cards {
+          width:100%;
+          height:150px;
+          overflow-y: scroll;
+        }
+      </style>
+  </body>
+</html>
