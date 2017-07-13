@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+
+<h1>Animal table</h1>
+<hr>
+
+  <h2>Kind of animals</h2>
+
+    <% for (i in context) { %>
+    <h4> <%= context[i].name %> (<%= context[i].description %>)
+      <a href="/animal/<%= context[i]._id %>">view</a> |
+      <a href="/animal/edit/<%= context[i]._id %>">edit</a> |
+      <a href="/animal/del/<%= context[i]._id %>">delete</a>
+    </h4>
+    <hr>
+    <% } %>
+
+<a href="/animal/new">ADD new</a>
+
+  </body>
+</html>

@@ -1,0 +1,26 @@
+db use my_first_db
+db.createCollection('students')
+db.my_first_db.find( { $and: [ { lucky_number: {$lte:7} },  { lucky_number:{$gte:1} }  ] }).pretty()
+show collections
+db.my_first_db.insert({name: "Eli", home_state: "CA", lucky_number: 11, birthday: {month: 1, day: 12, year: 1985}})
+db.my_first_db.find().pretty()
+db.my_first_db.find({home_state: "CA"}).pretty()
+
+
+
+db.my_first_db.update({},{$set:{interests:["coding","brunch","MongoDb"]}},{ multi: true })
+
+db.my_first_db.update({name:"Eli"},{$addToSet:{interests:"boxing"}})
+db.my_first_db.update({name:"Eli"},{$pull:{interests:"yoga"}})
+
+db.my_first_db.remove({home_state:"CA"})
+db.my_first_db.remove({lucky_number:{$gt:5}},{justOne: true})
+
+db.my_first_db.update({},{$set:{number_of_belts:0}},{ multi: true })
+
+
+db.my_first_db.update({home_state:"WA"},{$inc:{number_of_belts:1}},{ multi: true })
+db.my_first_db.update({},{$rename:{number_of_belts:"belts_earned"}},{ multi: true })
+db.my_first_db.update({},{$unset:{lucky_number:""}},{ multi: true })
+
+db.my_first_db.update({},{$set:{updated_on:new Date()}},{ multi: true })

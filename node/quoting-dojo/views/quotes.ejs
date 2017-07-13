@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Here are awexome quotes!</h1>
+    <% for (i in context) { %>
+    <h4> <%= context[i].name %></h4>
+     <p><%= context[i].quote %></p>
+     <hr>
+    <% } %>
+    <a href="/"><< GO back</a>
+  </body>
+</html>

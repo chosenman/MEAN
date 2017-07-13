@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+         $(document).ready(function (){
+            // this triggers the connection event in our server!
+            var socket  = io.connect();
+
+            // we'll write all the socket stuff after the above line!
+             $( '#btn'). click(function (){
+               socket. emit( "posting_form", {
+                 name:  $('#name').val(),
+                 loc:  $('#loc').val(),
+                 lang:  $('#lang').val(),
+                 comment:  $('#comment').val(),
+               });
+             });
+             socket. on( 'updated_message', function (data){
+                //  $("#answer").html( 'The server says: '  + data.name);
+
+                 $("#answer").html(
+                   `The server says:
+                   Name: ${data.name}<br/>
+                   Location: ${data.loc}<br/>
+                   Language: ${data.lang}<br/>
+                   Comment: ${data.comment}<br/><br/>
+                   Your lucky number: ${data.luckyNum}<br/>
+                   `
+
+                 );
+
+             });
+
+
+        })
+    </script>
+  </head>
+  <body>
+    <h1>HEYA</h1>
+    <div id="answer">
+
+    </div>
+    <form id="sform">
+      <p>
+        Name: <input id="name" type="text" name="name" value="">
+      </p>
+      <p>
+        Location:
+        <select id="loc" class="" name="loc">
+          <option value="San Jose" default>San Jose</option>
+          <option value="Los Angeles">Los Angeles</option>
+          <option value="Pripjatj">Pripjatj</option>
+        </select>
+      </p>
+      <p>
+        Language:
+        <select id='lang' class="" name="lang">
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+
+        </select>
+      </p>
+      <p>
+        comment <br>
+        <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
+      </p>
+      <input id="btn" onclick="javascript:void(0)" type="button" value="I AM A BUTTON!">
+    </form>
+
+  </body>
+</html>

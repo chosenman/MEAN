@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"> </script>
+  </head>
+  <body>
+
+<div id="user">
+
+</div>
+
+<% if (needUser) { %>
+  <h1 style="text-align:center">Welcome to chat, enter your name <br>
+  <form class="" action="/addUser" method="post">
+    Name: <input type="text" name="name" value=""><br>
+    <button type="submit" name="button">Login to chat</button>
+  </form>
+</h1>
+<% } else { %>
+
+  <h1><%= users[request.session.userId].name %> welcome to chat</h1>
+  <a href="/exit">Exit</a>
+  <%= users[request.session.userId].id %>
+  <script type="text/javascript">
+      var userID = <%= users[request.session.userId].id %>
+  </script>
+  <div id="chat">
+
+  </div>
+
+  <input id="message" type="text" name="message" value="" style="width:80%"><br>
+
+  <button id="msgbtn" type="submit" name="" value="">Send Message</button>
+
+
+
+<% } %>
+
+<script type ="text/javascript" src="chat.js"></script>
+
+<style media="screen">
+  #chat {
+    width:80%;
+    border: 1px solid black;
+    height:400px;
+    font-size: 1.5em;
+    overflow-y: scroll;
+  }
+</style>
+  </body>
+</html>

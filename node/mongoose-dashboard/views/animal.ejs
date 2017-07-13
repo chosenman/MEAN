@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+
+<h1>Animal table</h1>
+<hr>
+
+
+
+    <% for (i in context) { %>
+    <h1 style="text-align:center"><%= context[i].name %> </h1>
+
+      <h4><%= context[i].description %></h4>
+
+      <a href="/animal/edit/<%= context[i]._id %>">edit</a> |
+      <a href="/animal/del/<%= context[i]._id %>">delete</a>
+
+
+    <% } %>
+<hr>
+<a href="/">Go back</a>
+
+  </body>
+</html>
