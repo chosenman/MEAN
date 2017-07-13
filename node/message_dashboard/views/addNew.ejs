@@ -8,20 +8,10 @@
     <h1>Add new</h1>
     <% if(typeof(errors) != 'undefined' ) { %>
         <% for (var x in errors) { %>
-         <h3><%= errors[x].message %></h3>
+         <h3 style="color:red"><%= errors[x].message %></h3>
         <% } %>
     <% } %>
-      <form class="" action="/addnew" method="post">
-        <p>
-          Name:
-          <input type="text" name="name" value="">
-        </p>
-        <p>
-          Description:
-          <input type="text" name="des" value="">
-        </p>
-        <input type="submit" name="" value="Add new">
-      </form>
+
 
 <br>
 <br>

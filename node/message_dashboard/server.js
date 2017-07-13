@@ -18,8 +18,8 @@ var PostSchema = new mongoose.Schema({
 })
 var CommentSchema = new mongoose.Schema({
    _post: {type: Schema.Types.ObjectId, ref: 'Post'},
-   name: {type: String, required: true },
-   com_text: {type: String, required: true }
+   name: {type: String, required: true, minlength: 4 },
+   com_text: {type: String, required: true, minlength: 4 }
 }, {timestamps: true });
 // Email validation example
 // serSchema.path('email').required(true, 'User email cannot be blank');
@@ -69,17 +69,26 @@ app.post("/newpost", function(req, res){
 
 app.post('/posts/:id', function (req, res){
   Post.findOne({_id: req.params.id}, function(err, post){
+    if(err) {
+        res.render('addnew', {title: 'you have errors!', errors: post.errors, context: ""})
+    }
+    else {
          var comment = new Comment(req.body);
          comment._post = post._id;
          comment.name = req.body.name;
          comment.com_text = req.body.comment;
          post.comments.push(comment);
          comment.save(function(err){
+           if(err) {
+               res.render('addnew', {title: 'you have errors!', errors: comment.errors, context: ""})
+           }
+           else {
                  post.save(function(err){
-                       if(err) { console.log('Error'); }
-                       else { res.redirect('/'); }
+                        res.redirect('/');
                  });
+           }
          });
+    }
    });
  });
 
