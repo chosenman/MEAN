@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% if(typeof(errors) != 'undefined' ) { %>
+        <% for (var x in errors) { %>
+         <h3 style="color:red"><%= errors[x].message %></h3>
+        <% } %>
+    <% } %>
+
+<h1>The Dojo Message Board</h1>
+<hr>
+
+  <h2>Add new post:</h2>
+    <form class="" action="/newpost" method="post">
+      <input type="text" name="name" value="" placeholder="name"><br>
+      <textarea name="post" rows="3" cols="80" placeholder="post text"></textarea><br>
+      <input type="submit" name="" value="Post Message">
+    </form>
+
+<hr>
+
+
+  <div class="wrapper" style="padding-left:50px;background:#ccc">
+    <h3>Existing messages:</h3>
+    <% for (var i=0; i < context.length; i++) { %>
+      <p>
+        <b>Name: <%= context[i].name %> </b><br>
+          <b>Message: </b><%= context[i].post %>
+      </p>
+      <div class="comment" style="padding-left:30px;">
+        <h4 style="color:green ">Comments</h4>
+
+        <% for (var y = 0 ; y < context[i].comments.length; y++) { %>
+          <p style="border:1px solid #fff;background:#fff">
+               <b>Name: </b>
+                 <%= context[i].comments[y].name %> <br>
+               <b>Comment: </b>
+                 <%= context[i].comments[y].com_text %>
+          </p>
+        <% } %>
+        <form class="" action="/posts/<%= context[i]._id %>" method="post">
+          <input type="text" name="name" value="" placeholder="name"><br>
+          <textarea name="comment" rows="2" cols="50" placeholder="post text"></textarea><br>
+          <input type="submit" name="" value="Comment">
+        </form>
+      </div>
+      <hr>
+      <% } %>
+  </div>
+
+
+
+  </body>
+</html>
