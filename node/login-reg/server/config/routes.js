@@ -12,4 +12,8 @@ module.exports = function(app){
     users.create(req, res)
   })
 
+  app.post("/login", function(req, res){
+    users.login(req, res)
+  })
+
 }

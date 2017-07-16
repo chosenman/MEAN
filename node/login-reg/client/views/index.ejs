@@ -15,11 +15,7 @@
     <title></title>
   </head>
   <body>
-    <% if(typeof(errors) != 'undefined' ) { %>
-        <% for (var x in errors) { %>
-         <h3><%= errors[x].message %></h3>
-        <% } %>
-    <% } %>
+
     <div class="container">
         	<div class="row">
     			<div class="col-md-6 col-md-offset-3">
@@ -35,6 +31,38 @@
     						</div>
     						<hr>
     					</div>
+              <!-- VALIDATION MSG -->
+              <% if(typeof(title) != 'undefined' ) { %>
+                <div class="panel-body error">
+                  <%= title %>
+                </div>
+                  <script type="text/javascript">
+                  $("#login-form").hide();
+                  $("#register-form").show();
+                    $('#login-form-link').removeClass('active');
+                    $("#register-form-link").addClass('active');
+                  </script>
+              <% } %>
+              <% if(typeof(errors) != 'undefined' ) { %>
+                <div class="panel-body error">
+                  <% for (var x in errors) { %>
+                   <p><%= errors[x].message %></p>
+                  <% } %>
+                </div>
+                <script type="text/javascript">
+                $("#login-form").hide();
+                $("#register-form").show();
+                  $('#login-form-link').removeClass('active');
+                  $("#register-form-link").addClass('active');
+                </script>
+              <% } %>
+
+              <% if(typeof(message) != 'undefined') { %>
+                <div class="panel-body <%= style %>"  >
+                  <%= message %>
+                </div>
+              <% } %>
+              <!-- VALIDATION MSG  -->
     					<div class="panel-body">
     						<div class="row">
     							<div class="col-lg-12">
@@ -44,11 +72,12 @@
     								<form id="login-form" action="/login" method="post" role="form" style="display: block;">
     									<div class="form-group">
 
-    										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                        <!-- EMAIL  -->
+    										<input type="text" name="email" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 
     									</div>
     									<div class="form-group">
-
+                        <!-- PASSWORD -->
     										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
 
     									</div>
@@ -82,12 +111,12 @@
     									</div>
     									<div class="form-group">
                         <!-- PASSWORD  -->
-    										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+    										<input type="text" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
 
     									</div>
     									<div class="form-group">
                         <!-- CONFIRM PASSWORD  -->
-    										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+    										<input type="text" name="confirm_password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
 
     									</div>
     									<div class="form-group">
@@ -113,17 +142,20 @@
     	</div>
 
 
-
-<% for (var i=0; i<context.length; i++) { %>
-  <p>name: <%= context[i].first_name %>,
-    lastname: <%= context[i].last_name %>,
-    email: <%= context[i].email %>, 
-  </p>
+<% if(typeof(context) != 'undefined' ) { %>
+    <% for (var i=0; i<context.length; i++) { %>
+      <p><b>name</b>: <%= context[i].first_name %>,
+        <b>lastname</b>: <%= context[i].last_name %>,
+        <b>email</b>: <%= context[i].email %>,
+        <b>pw</b>: <%= context[i].password %>,
+        <b>birthday</b>: <%= context[i].birthday %>,
+      </p>
+    <% } %>
 <% } %>
 <script type="text/javascript">
 $(function() {
 
-  $('#login-form-link').click(function(e) {
+$('#login-form-link').click(function(e) {
   $("#login-form").delay(100).fadeIn(100);
   $("#register-form").fadeOut(100);
   $('#register-form-link').removeClass('active');
@@ -241,6 +273,9 @@ color: #fff;
 background-color: #1CA347;
 border-color: #1CA347;
 }
+
+    .error { color:red   }
+    .success { color:green   }
 
 </style>
   </body>

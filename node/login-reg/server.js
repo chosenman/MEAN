@@ -12,10 +12,7 @@ app.set('view engine', 'ejs');
 
 
 require('./server/config/mongoose.js');
-// Bcrypt Stuff
-  // var bcrypt = require('bcryptjs');   // or 'bcrypt' on some versions
-  // bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-  // bcrypt.compareSync(password, this.password);
+
 
 
   // store the function in a variable
