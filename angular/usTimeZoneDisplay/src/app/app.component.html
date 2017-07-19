@@ -1,0 +1,38 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+  {{title | uppercase }}!
+  </h1>
+
+<div [ngClass]="{ 'active': switch }" class="barblock" (click)="showTime('PST',$event); // switch = true" > PST </div>
+<div class="barblock" (click)="showTime('MST',$event)"> MST </div>
+<div class="barblock" (click)="showTime('CST',$event)"> CST </div>
+<div class="barblock" (click)="showTime('EST',$event)"> EST </div>
+
+<div class="barblock" (click)="clear()"> Clear </div>
+
+
+<h1 id="time">{{ time_ | date:'medium'}}</h1>
+
+
+
+
+</div>
+  <style media="screen">
+    .barblock:hover {
+      /*background: #ccc;*/
+    }
+    .barblock {
+      font-size: 2em;
+      line-height: 150px;
+      border: 1px solid #333;
+      cursor:pointer;
+      width:150px;
+      height: 150px;
+      display:inline-block;
+      margin-left: 5px;
+
+    }
+
+    .active {background: yellow}
+  </style>

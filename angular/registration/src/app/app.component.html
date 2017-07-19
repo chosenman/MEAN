@@ -1,0 +1,247 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div >
+  <h1>
+  {{title | uppercase }}!
+  </h1>
+
+
+<app-awesome></app-awesome>
+<app-note></app-note>
+
+    <div *ngIf='success'>
+      <div class="green">
+        Success! Thank you for your registration, we will send on your {{user.email}}.<br>
+        Have a good day!
+        <a href="/">resubmit</a>
+
+      </div>
+    </div>
+    <form (submit)="onsubmit()" *ngIf='!success'>
+
+      <!-- First Name  -->
+      <p>
+      First Name: <input type="text" name="first_name" [(ngModel)]="user.first_name"
+      required
+      minlength="3"
+      maxlength="24"
+      pattern='[a-zA-Z][a-zA-Z ]+'
+      [(ngModel)] = "user.first_name"
+      #first_name="ngModel"
+      >
+      <span *ngIf="!first_name.valid">
+        <span    [hidden]="!first_name.hasError('required')">   Name is required</span>
+         <span [hidden]="!first_name.hasError('pattern')">Only letters allowed</span>
+      </span>
+      <!-- {{first_name.errors | json}}
+      {{first_name.valid | json}} -->
+      </p>
+
+      <!-- Last Name  -->
+      <p>
+      Last Name: <input type="text" name="last_name" [(ngModel)]="user.last_name"
+      required
+      minlength="3"
+      maxlength="24"
+      pattern='[a-zA-Z][a-zA-Z ]+'
+      [(ngModel)] = "user.last_name"
+      #last_name="ngModel"
+      >
+      <span *ngIf="!last_name.valid">
+        <span    [hidden]="!last_name.hasError('required')">   Last name is required</span>
+         <span [hidden]="!last_name.hasError('pattern')"> Only letters allowed</span>
+      </span>
+      <!-- {{last_name.errors | json}}
+      {{last_name.valid | json}} -->
+      </p>
+
+      <!-- Email  -->
+      <p>
+      Email Name: <input type="text" name="email" [(ngModel)]="user.email"
+      required
+      minlength="3"
+      maxlength="24"
+      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b"
+      [(ngModel)] = "user.email"
+      #email="ngModel"
+      >
+      <span *ngIf="!email.valid">
+        <span    [hidden]="!email.hasError('required')">  Email is required</span>
+         <span [hidden]="!email.hasError('pattern')"> Email should be valid</span>
+      </span>
+      {{email.errors | json}}
+      {{email.valid | json}}
+      {{email.pattern | json}}
+      </p>
+
+      <!-- Password  -->
+      <p>
+      Password: <input type="password" name="password" [(ngModel)]="user.password"
+      required
+      minlength="3"
+      maxlength="24"
+      pattern=""
+      [(ngModel)] = "user.password"
+      #password="ngModel"
+      >
+      <span *ngIf="!password.valid">
+        <span    [hidden]="!password.hasError('required')">  Password is required</span>
+         <span [hidden]="!password.hasError('pattern')"> Password should have 8 characters and include at lest 1 lowercase, Uppercase, numeric and special character</span>
+      </span>
+      {{password.errors | json}}
+      {{password.valid | json}}
+      {{password.pattern | json}}
+      </p>
+
+      <!-- Re-password  -->
+      <p>
+      Re-password: <input type="password" name="repassword" [(ngModel)]="user.repassword"
+      required
+      minlength="3"
+      maxlength="24"
+      pattern=""
+      [(ngModel)] = "user.repassword"
+      #repassword="ngModel"
+      >
+      <span *ngIf="user.repassword!=user.password">
+        Passwords should match!
+      </span>
+      {{repassword.errors | json}}
+      {{repassword.valid | json}}
+      {{repassword.pattern | json}}
+      </p>
+
+
+
+
+    <!-- Street address  -->
+    <p>
+    Street address: <input type="text" name="street_address" [(ngModel)]="user.street_address"
+    required
+    minlength="3"
+    maxlength="24"
+    pattern=""
+    [(ngModel)] = "user.street_address"
+    #street_address="ngModel"
+    >
+    <span *ngIf="!street_address.valid">
+      <span    [hidden]="!street_address.hasError('required')">  Street address is required</span>
+    </span>
+    {{street_address.errors | json}}
+    {{street_address.valid | json}}
+    {{street_address.pattern | json}}
+    </p>
+
+    <!-- Unit Appartment  -->
+    <p>
+    Unit Appartment: <input type="text" name="Unit_appt" [(ngModel)]="user.Unit_appt"
+    required
+    minlength="1"
+    maxlength="7"
+    pattern=""
+    [(ngModel)] = "user.Unit_appt"
+    #Unit_appt="ngModel"
+    >
+    <span *ngIf="!Unit_appt.valid">
+      <span    [hidden]="!Unit_appt.hasError('required')">  Street address is required</span>
+    </span>
+    {{Unit_appt.errors | json}}
+    {{Unit_appt.valid | json}}
+    {{Unit_appt.pattern | json}}
+    </p>
+
+    <!-- City  -->
+    <p>
+    City: <input type="text" name="City" [(ngModel)]="user.City"
+    required
+    minlength="2"
+    maxlength="20"
+    pattern=""
+    [(ngModel)] = "user.City"
+    #City="ngModel"
+    >
+    <span *ngIf="!City.valid">
+      <span    [hidden]="!City.hasError('required')">  City is required</span>
+    </span>
+    {{City.errors | json}}
+    {{City.valid | json}}
+    {{City.pattern | json}}
+    </p>
+
+    <!-- State  -->
+    <p>
+    State:
+    <select type="text" name="State" [(ngModel)]="user.State"
+    required
+    [(ngModel)] = "user.State"
+    #State="ngModel"
+    >
+      <option value="CA" selected>CA</option>
+      <option value="WA">WA</option>
+  </select>
+    <span *ngIf="!State.valid">
+      <span    [hidden]="!State.hasError('required')">  State is required</span>
+    </span>
+    {{State.errors | json}}
+    {{State.valid | json}}
+    {{State.pattern | json}}
+    </p>
+
+
+    <!-- Lucky  -->
+    <p>
+    Lucky:<br>
+    <input type="radio" name="lucky" [(ngModel)]="user.lucky"
+    required
+    [(ngModel)] = "user.lucky"
+    #lucky="ngModel"
+    value="true"
+    checked
+    >
+    lucky
+    <input type="radio" name="lucky" [(ngModel)]="user.lucky"
+    required
+    [(ngModel)] = "user.lucky"
+    #lucky="ngModel"
+    value="false"
+    >
+    unlucky
+    <span *ngIf="!lucky.valid">
+      <span    [hidden]="!lucky.hasError('required')">  City is required</span>
+    </span>
+    {{lucky.errors | json}}
+    {{lucky.valid | json}}
+    {{lucky.pattern | json}}
+    </p>
+
+    <!-- SUTMIT BUTTON  -->
+
+    <span *ngIf="
+     first_name.valid &&
+     last_name.valid &&
+     email.valid &&
+     password.valid &&
+     repassword.valid &&
+     street_address.valid &&
+     Unit_appt.valid &&
+     City.valid &&
+     State.valid &&
+     lucky.valid">
+      <button type="submit" name="button" onclick="javascript:void(0)" >Submit</button>
+    </span>
+  </form>
+
+
+<!--
+  <span *ngFor="let button of switch; let i = index">
+    <div  (click)="changeSwitch(i)" class="barblock" [ngClass]="{ 'red': !button, 'green': button }">
+      <span *ngIf="button">On</span>
+      <span *ngIf="!button">Off</span>
+    </div>
+  </span>
+ -->
+
+
+</div>
+  <style media="screen">
+
+  </style>

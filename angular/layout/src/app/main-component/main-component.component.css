@@ -1,0 +1,11 @@
+#main {
+  float:right;
+  width: 80%;
+  overflow: hidden;
+
+  display: inline-block;
+  overflow: hidden;
+  border:1px solid #333;
+  min-height: 200px;
+  background: #ccc;
+}

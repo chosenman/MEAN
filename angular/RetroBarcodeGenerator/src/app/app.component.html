@@ -1,0 +1,41 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+  {{title | uppercase }}!
+  </h1>
+
+  <span *ngFor="let block of [1,2,3,4,5,6,7,8]">
+    <span  [ngStyle]="{ 'background-color': switch() }" class="barblock"></span>
+  </span>
+
+<form (submit)="onsubmit()">
+  <input type="text" name="name" [(ngModel)]="form.name"
+  required
+  minlength="3"
+  maxlength="24"
+  pattern='' 
+  [(ngModel)] = "form.name"
+  #name="ngModel"
+  >
+  {{name.errors | json}}
+  {{name.valid | json}}
+  <div  style="color:red" *ngIf="!name.valid">You have wrong input</div>
+  <br>
+  <input type="text" name="email" [(ngModel)]="form.email"><br>
+  <input type="text" name="password" [(ngModel)]="form.password"><br>
+  <button type="submit" name="button" onclick="javascript:void(0)">Submit</button>
+</form>
+
+{{form | json }}
+
+<div class="myForm">
+
+</div>
+  <style media="screen">
+    .barblock {
+      width:150px;
+      height: 150px;
+      display:inline-block;
+      margin-left: 5px;
+    }
+  </style>

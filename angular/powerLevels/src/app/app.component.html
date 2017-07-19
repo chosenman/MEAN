@@ -1,0 +1,63 @@
+
+<div id="powerComponent">
+    <form (submit)="onsubmit()">
+
+      <h1>
+      Initial power level:
+
+      <input type="text" name="char.inPower"
+      [(ngModel)] = "char.inPower"
+      #inPower="ngModel"
+      minlength="1"
+      maxlength="3"
+      pattern='[1-9][0-9]?$|^100'
+      value=''
+      >
+      <span *ngIf="inPower.valid">
+        <input type="submit" name="" onclick="javascript:void(0)" value="Calculate Powers">
+    </span>
+  </h1>
+
+  <p>
+      <span *ngIf="!inPower.valid && char.inPower != '' ">
+        <span    [hidden]="inPower.hasError('required')">   input value between 0 and 100</span>
+         <span [hidden]="!inPower.hasError('pattern')">Only number allowed between 0 and 100</span>
+      </span>
+      <!-- {{inPower.errors | json}} -->
+      {{inPower.valid}}
+  </p>
+
+      {{calculate_message}}
+
+  {{char.inPower}}
+    </form>
+
+
+<app-human [getinPower]='char.inPower'>
+</app-human>
+
+<app-saiyan [getinPower]='char.inPower'>
+</app-saiyan>
+
+<app-super-saiyan [getinPower]='char.inPower'>
+</app-super-saiyan>
+
+<app-super-saiyan-three [getinPower]='char.inPower'>
+</app-super-saiyan-three>
+
+
+
+<app-super-saiyan-four [getinPower]='char.inPower'>
+</app-super-saiyan-four>
+
+
+<app-super-saiyan-five [getinPower]='char.inPower' (myEvent)='invoce($event)'>
+</app-super-saiyan-five>
+
+
+</div>
+
+
+<style media="screen">
+
+</style>

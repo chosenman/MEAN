@@ -1,0 +1,35 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+  {{title | uppercase }}!
+  </h1>
+<!-- <h2>Here are some links to help you start: </h2>
+
+<h3 *ngIf='myBool'>Ng if: {{value}}</h3>
+
+<h3>{{user | json}}</h3>
+<h3>{{amount | currency}}</h3>
+<h3>{{today | date:'shortTime'}}</h3> -->
+
+<table width="100%">
+  <tr>
+    <td><b>Email</b></td>
+    <td><b>Importance</b></td>
+    <td><b>Subject</b></td>
+    <td><b>Content</b></td>
+  </tr>
+  <tr *ngFor="let num of listofEmails">
+    <td>{{num.email | lowercase}}</td>
+    <td>
+      <span *ngIf="num.importance">High</span>
+      <span *ngIf="!num.importance">Low</span>
+      <!-- {{num.importance}} -->
+    </td>
+    <td>{{num.subject}}</td>
+    <td>{{num.content}}</td>
+
+  </tr>
+
+</table>
+
+<!-- <input type="text" name="" [value]="value"> -->

@@ -1,0 +1,8 @@
+#vmenu {
+  display: inline-block;
+  overflow: hidden;
+  width: 18%;
+  border:1px solid #333;
+  min-height: 200px;
+  background: #ccc;
+}

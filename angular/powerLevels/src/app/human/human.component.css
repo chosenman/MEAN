@@ -1,0 +1,14 @@
+.barblock:hover {
+  /*background: #ccc;*/
+}
+.barblock {
+  font-size: 2em;
+  /*padding:3=5px;*/
+  border: 1px solid #333;
+  cursor:pointer;
+  width:30%;
+  height: 100px;
+  display:inline-block;
+  margin-left: 5px;
+
+}

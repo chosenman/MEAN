@@ -1,0 +1,20 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+  {{title | uppercase }}!
+  </h1>
+
+
+  <span *ngFor="let button of switch; let i = index">
+    <div  (click)="changeSwitch(i)" class="barblock" [ngClass]="{ 'red': !button, 'green': button }">
+      <span *ngIf="button">On</span>
+      <span *ngIf="!button">Off</span>
+    </div>
+  </span>
+
+
+
+</div>
+  <style media="screen">
+
+  </style>

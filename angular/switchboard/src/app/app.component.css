@@ -1,0 +1,32 @@
+.ng-invalid {
+color:red}
+.ng-valid { }
+.ng-untouched { }
+.ng-touched { }
+.ng-dirty { }
+.ng-pristine { }
+
+
+.barblock:hover {
+  /*background: #ccc;*/
+}
+.barblock {
+  font-size: 2em;
+  line-height: 100px;
+  border: 1px solid #333;
+  cursor:pointer;
+  width:100px;
+  height: 100px;
+  display:inline-block;
+  margin-left: 5px;
+
+}
+
+.active {background: yellow}
+
+.green {
+  background-color: green;
+}
+.red {
+  background: red;
+}
