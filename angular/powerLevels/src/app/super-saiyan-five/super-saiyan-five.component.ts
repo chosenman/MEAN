@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 })
 export class SuperSaiyanFiveComponent implements OnInit {
   @Input() getinPower;
-
+  @Input() multiplicator
   _power = null
   message='';
 
