@@ -1,0 +1,41 @@
+<h1>Add a quote</h1>
+
+<form (submit)="onsubmit()" #quoteForm="ngForm">
+
+  <textarea rows="8" cols="80"
+  name="text"
+  [(ngModel)]='quote.text'
+  #text='ngModel'
+
+  required
+  minlength="3"
+  ></textarea>
+  <span  [hidden]="!text.hasError('required') && text.valid" >
+    <span style="color:red">Quote is required and should be 3 letters at least</span>
+   </span>
+  <!-- {{text.valid | json}} -->
+  <br>
+
+  <input type="text" value=""
+  name="author"
+  [(ngModel)]="quote.author"
+  #author='ngModel'
+
+  minlength="1"
+  required
+  >
+  <span  [hidden]="!author.hasError('required') && author.valid" >
+    <span style="color:red">Name is required and should be 1 letters at least</span>
+   </span>
+  <!-- {{author.valid | json}} -->
+  <br>
+
+  <input type="submit" name="" value="Submit" [disabled]='!quoteForm.valid'>
+
+</form>
+
+<app-guote-list
+[newQuoteText]='quote_.text'
+[newQuoteAuthor]='quote_.author'
+(myEvent)='invoce($event)'>
+</app-guote-list>

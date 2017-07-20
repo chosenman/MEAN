@@ -1,0 +1,31 @@
+<h2>Quote list</h2>
+<span *ngIf="all_quotes.length>0">
+
+    <div *ngFor="let quote of all_quotes; let i=index">
+      <div style="border:1px solid black">
+        <table>
+          <tr>
+            <td>
+              <div style="background:#FFE453;padding:5px">
+                <p style="padding:5px">"{{quote.text}}"</p>
+                <b> - {{quote.author}}</b>
+              </div>
+            </td>
+            <td>
+              {{quote.votes}}
+            </td>
+            <td>
+              <button style="background:#B6D7A8;padding:5px;" (click)='upwote(i)'>Vote Up</button><br>
+              <button style="background:#E8958F;padding:5px;"
+             (click)='downwote(i)'>Vote Down</button><br>
+              <button style="background:#333;color:white;padding:5px;" (click)='delete(i)'>Delete</button>
+
+            </td>
+          </tr>
+        </table>
+
+        <hr>
+      </div>
+    </div>
+
+</span>
