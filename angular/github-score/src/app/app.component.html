@@ -1,0 +1,50 @@
+<table width="100%">
+  <tr>
+    <td width="30%">
+
+      <h1>{{title}}</h1>
+      <form #gitUserForm="ngForm" (submit)="onclick()">
+
+       GitHub Username:
+
+       <input type="text" value=""
+       minlength="3"
+       required
+       name="githubUser" [(ngModel)]='githubUser'
+       #userField='ngModel'
+       >
+       <!-- <br> -->
+       <!-- {{gitUserForm.valid }}<hr>
+       {{userField.valid | json}} -->
+       <span [hidden]="gitUserForm.valid && userField.valid">
+         <span style="color:red">User field shouldn't be empty and have min 3 chars</span>
+       </span>
+
+       <br>
+       <input type="submit" name=""
+       [disabled]='!gitUserForm.valid'
+
+       value="Calculate My GitHub Score of {{githubUser}}"
+       >
+      </form>
+
+    </td>
+
+    <td style="text-align:center">
+      <p>
+
+      </p>
+      <span *ngIf="message">
+        <h1 style="color:green">Your score {{tasks.followers + tasks.public_repos}} </h1>
+          <!-- <h2 style="color:{{color}}">{{message}}</h2> -->
+          <h2 [ngStyle]="{
+              'color': color,
+              'font-weight': 'bold'
+            }">{{message}}</h2>
+      </span>
+
+      <!-- {{tasks | json}} -->
+    </td>
+
+  </tr>
+</table>
