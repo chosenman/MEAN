@@ -1,4 +1,53 @@
-<div style="background:#E8F1F2; min-height:70vh;padding:30px;">
-  <h1>Create new Product</h1>
+<div style="background:#E8F1F2; padding:30px;">
 
+{{products | json}}
+  <h1>Create new Product</h1>
+  <form (submit)='changeData()' #newPr="ngForm">
+    <!-- title -->
+    <input type="text"
+    required
+    minlength='4'
+    name="newRecord.title" value=""
+    [(ngModel)]='newRecord.title'
+    #titleField="ngModel"
+    >
+    <span [hidden]="titleField.valid">
+      <span style="color:red">this field is required and shoud have at least 4 letters </span>
+    </span>
+    <!-- {{titleField.valid}} -->
+    <br>
+
+    <!-- price -->
+    <input type="text"
+    required
+    name="newRecord.price" value=""
+    [(ngModel)]='newRecord.price'
+    #priceField="ngModel"
+    >
+    <span [hidden]="priceField.valid">
+      <span style="color:red">this field is required</span>
+    </span>
+    <!-- {{priceField.valid}} -->
+    <br>
+
+    <!-- img -->
+    <input type="text"
+    
+    name="newRecord.img" value=""
+    [(ngModel)]='newRecord.img'
+    #imgField="ngModel"
+    >
+    <span [hidden]="imgField.valid">
+      <span style="color:red">this field is required</span>
+    </span>
+    <!-- {{imgField.valid}} -->
+    <br>
+
+    <!-- button to submit -->
+    <button [disabled]='!newPr.valid' type="submit" name="button">Submit</button>
+
+  </form>
+  {{newRecord.title}}<br>
+  {{newRecord.price}}<br>
+  {{newRecord.img}}
 </div>

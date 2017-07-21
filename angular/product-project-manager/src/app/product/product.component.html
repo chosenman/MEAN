@@ -1,4 +1,23 @@
-<div style="background:#E8F1F2; min-height:70vh;padding:30px;">
+<div style="background:#E8F1F2;padding:30px;">
   <h1>Product List</h1>
-  
+  <span *ngFor='let product of products; let i = index'>
+
+    <div style=" float:left; width:19%;padding:1%;margin:1%;float:left">
+      <h2>{{product.title}}</h2>
+      <img src="{{product.img}}" alt="" width ="70%; ">
+      <h3>{{product.price}}</h3>
+      <a href="[]"></a>
+      <a [routerLink]="['/products','edit', i ]">edit</a>
+      <button (click)="delete(id)">delete</button>
+       with ID: {{i}}
+     </div>
+
+  </span>
+<hr>
+<div style="clear:both">
+
+</div>
+  {{products | json}}
+  <!-- <button (click)="changeData()"  name="button">
+    Change data</button> -->
 </div>

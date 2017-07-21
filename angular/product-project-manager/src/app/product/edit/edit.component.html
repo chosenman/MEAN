@@ -1,4 +1,66 @@
-<div style="background:#E8F1F2; min-height:70vh;padding:30px;">
+<div *ngIf="updatableRecord == 0" style="font-size:3em; text-align:center; line-height:80vh">
+  bad URL, <a  [routerLink]="['/']">go Home</a>
+</div>
+<div *ngIf="updatableRecord != 0" style="background:#E8F1F2; min-height:70vh;padding:30px;">
   <h1>Edit</h1>
 
+
+
+      <form  (submit)='updateData()' #editedPr="ngForm">
+        <!-- title -->
+        <input type="text"
+        value="{{updatableRecord.title}}"
+        minlength='4'
+        required
+        name="updatableRecord.title" value=""
+        [(ngModel)]='updatableRecord.title'
+        #titleField="ngModel"
+        >
+        <span [hidden]="titleField.valid">
+          <span style="color:red">this field is required and shoud have at least 4 letters</span>
+        </span>
+        <!-- {{titleField.valid}} -->
+        <br>
+
+        <!-- price -->
+        <input type="text"
+        value="{{updatableRecord.price}}"
+        required
+        name="updatableRecord.price" value=""
+        [(ngModel)]='updatableRecord.price'
+        #priceField="ngModel"
+        >
+        <span [hidden]="priceField.valid">
+          <span style="color:red">this field is required</span>
+        </span>
+        <!-- {{priceField.valid}} -->
+        <br>
+
+        <!-- img -->
+        <input type="text"
+        value="{{updatableRecord.img}}"
+
+        name="updatableRecord.img" value=""
+        [(ngModel)]='updatableRecord.img'
+        #imgField="ngModel"
+        >
+        <span [hidden]="imgField.valid">
+          <span style="color:red">this field is required</span>
+        </span>
+        <!-- {{imgField.valid}} -->
+        <br>
+
+        <!-- button to submit -->
+        <button [disabled]='!editedPr.valid' type="submit" name="button">Submit</button>
+        <button (click)="delete()" style="background:red;color:white">delete</button>
+
+      </form>
+
+
+
+
+
+    <hr>
+    {{products | json}}
+    {{updatableRecord | json}}
 </div>
