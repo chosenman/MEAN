@@ -10,3 +10,13 @@ npm install -g @angular/cli
     ng generate component my-component - Creates a component
     ng generate service my-service - Creates a service
     ng generate class my-class - Creates a class
+
+
+    \\\\\\\\\\\\\\\\\\
+
+    ng generate service http
+
+    ng new my-project-name --routing
+
+    // watch
+    ng build -w
