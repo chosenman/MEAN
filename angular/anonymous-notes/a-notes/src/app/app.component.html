@@ -1,0 +1,44 @@
+<div style="width:80%;">
+
+
+<h1>Anonymous Notes</h1>
+<form (submit) = "newNote()" #noteForm="ngForm">
+  <input type="text"
+  required
+  minlength='3'
+  name="note.text"
+  [(ngModel)]="note.text"
+  #noteField="ngModel"
+  >
+  <span [hidden]="noteField.valid">
+    <span style="color:red">this field is required and shoud have at least 3 letters </span>
+  </span>
+
+  <input [disabled]='!noteForm.valid' type="submit" name="" value="add Note">
+
+</form>
+<!-- {{note.text}} -->
+<hr>
+<!-- {{notes | json}}
+<hr> -->
+<div style="height:200px; overflow-y:scroll; background: #ccc">
+
+    <span *ngFor="let note of notes ; let i = index">
+      <div style="border: 1px solid black;  padding:20px; margin:20px;background:#fff">
+
+        <div style="text-align:right">
+          {{note.date | date:'medium'}}
+        </div>
+
+        {{note.text}}
+      </div>
+    </span>
+
+</div>
+
+<hr>
+
+
+
+<router-outlet></router-outlet>
+</div>

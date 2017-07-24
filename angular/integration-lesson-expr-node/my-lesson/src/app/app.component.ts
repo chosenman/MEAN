@@ -13,7 +13,7 @@ export class AppComponent {
   // subscription: Subscription;
 
   constructor( private _httpService: HttpService ) {}
-
+ 
   retrieveAll(){
     this._httpService.retrieveAll()
     .then( data => { console.log("Data from retrieveAll function: " + data) } )

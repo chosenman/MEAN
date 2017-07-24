@@ -1,3 +1,4 @@
+var path = require('path');
 module.exports = function(app){
 
   app.get('/products', (req, res, next)=>{
@@ -15,5 +16,9 @@ module.exports = function(app){
   app.delete('/products/:id', (req, res, next)=>{
     res.json(true)
   });
-  
+
+  app.all("*", (req,res,next) => {
+      res.sendfile(path.resolve("/../../my-lesson/dist/index.html"))
+  });
+
 }
