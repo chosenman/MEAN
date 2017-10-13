@@ -1,0 +1,52 @@
+<h3>New Question</h3>
+
+<div style="padding:7px">
+  <a [routerLink]="['/browse', id]">Questions</a> |
+
+
+  <a [routerLink]="['/']">Log Off</a>
+
+</div>
+
+<form (submit) = "newQuestion()" #questionForm="ngForm">
+
+
+  <!-- question   -->
+  Question: <input type="text"
+  width="100%"
+  required
+  minlength="10"
+
+  name="question.q"
+  [(ngModel)]="question.q"
+  #qField="ngModel"
+  >
+  <span *ngIf="!qField.valid" style="color:red">
+    This field is required, min 10 chars
+  </span>
+
+
+  <br>
+
+  <!-- details   -->
+  Details: <textarea type="text"
+
+  rows="10"
+
+  name="question.details"
+  [(ngModel)]="question.details"
+  #detailsField="ngModel"
+  ></textarea>
+
+
+
+  <br>
+
+  <span [hidden]="!answer" style="color:red">
+    <br>
+    <div style="margin-left:300px;">{{answer}}</div>
+  </span>
+
+  <input [disabled]='!questionForm.valid' type="submit" name="" value="Enter">
+
+</form>

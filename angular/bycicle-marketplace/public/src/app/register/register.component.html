@@ -1,0 +1,81 @@
+<h3>Register</h3>
+
+
+<form (submit) = "register()" #geristerForm="ngForm">
+
+  <!-- First Name  -->
+  First name:
+  <input type="text"
+  required
+  name="user.first_name"
+  [(ngModel)]="user.first_name"
+  #fnameField="ngModel"
+  >
+  <span [hidden]="fnameField.valid">
+    <span style="color:red">this field is required</span>
+  </span>
+  <br>
+
+  <!-- LAST Name  -->
+  Last name:
+  <input type="text"
+  required
+  name="user.last_name"
+  [(ngModel)]="user.last_name"
+  #lnameField="ngModel"
+  >
+  <span [hidden]="lnameField.valid">
+    <span style="color:red">this field is required</span>
+  </span>
+  <br>
+
+  <!-- Email   -->
+  Email: <input type="text"
+  required
+  minlength="3"
+  maxlength="24"
+  pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b"
+  name="user.email"
+  [(ngModel)]="user.email"
+  #emailField="ngModel"
+  >
+  <span *ngIf="!emailField.valid" style="color:red">
+    <span    [hidden]="!emailField.hasError('required')">  Email is required</span>
+     <span [hidden]="!emailField.hasError('pattern')"> Email should be valid</span>
+  </span>
+
+  <br>
+  Password: <input type="text"
+  required
+  name="user.password"
+  [(ngModel)]="user.password"
+  #pwField="ngModel"
+  >
+  <span [hidden]="pwField.valid">
+    <span style="color:red">this field is required</span>
+  </span>
+
+  <br>
+  Re password: <input type="text"
+  required
+  name="user.repassword"
+  [(ngModel)]="user.repassword"
+  #repwField="ngModel"
+  >
+  <span [hidden]="repwField.valid && user.password == user.repassword">
+    <span style="color:red">passwords should match</span>
+  </span>
+
+  <br>
+  <span [hidden]="!answer" style="color:red">
+    <br>
+    <div style="margin-left:300px;">{{answer}}</div>
+  </span>
+
+  <input [disabled]='!geristerForm.valid || user.password != user.repassword' type="submit" name="" value="Register">
+
+</form>
+
+{{user.email}}<br>
+{{user.password}}<br>
+{{user.repassword}}

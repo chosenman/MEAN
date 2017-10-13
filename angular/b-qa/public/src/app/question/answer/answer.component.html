@@ -1,0 +1,65 @@
+<h1>Answer Question</h1>
+
+<div style="padding:7px">
+  <a [routerLink]="['/browse', id]">Questions</a> |
+  <a [routerLink]="['/showquestion', q_id, 'byuser', id]">Go back to Question</a> |
+
+  <a [routerLink]="['/']">Log Off</a>
+
+<hr>
+
+<!-- <p>  {{question | json}}</p> -->
+<h1>  {{question.question}}</h1>
+<h2>  {{question.details}}</h2>
+
+
+<form (submit) = "newAnswer()" #aForm="ngForm">
+
+
+  <!-- question   -->
+  Your Answer: <input type="text"
+  width="100%"
+  required
+  minlength="5"
+
+  name="answerQuestion.a"
+  [(ngModel)]="answerQuestion.a"
+  #aField="ngModel"
+  >
+  <span *ngIf="!aField.valid" style="color:red">
+    This field is required, min 10 chars
+  </span>
+
+
+  <br>
+
+  <!-- details   -->
+  Details: <textarea type="text"
+
+  rows="10"
+
+  name="answerQuestion.details"
+  [(ngModel)]="answerQuestion.details"
+  #detailsField="ngModel"
+  ></textarea>
+
+
+
+  <br>
+
+  <span [hidden]="!answer" style="color:red">
+    <br>
+    <div style="margin-left:300px;">{{answer}}</div>
+  </span>
+
+  <a [routerLink]="['/browse', id]">Cancel</a>
+  <input [disabled]='!aForm.valid' type="submit" name="" value="Enter">
+
+
+</form>
+
+{{answerQuestion.a}}<br>
+{{answerQuestion.details}}
+
+
+</div>

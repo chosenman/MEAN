@@ -1,0 +1,55 @@
+<p>
+  show works!
+  <a [routerLink]="['/questions']" style="float:right">Cancel</a>
+</p>
+
+<!-- {{id}} -->
+<hr>
+
+<!-- {{question | json}} -->
+
+<h1>{{question.question}}</h1>
+<p> Click the Vote button to choose one. </p>
+<table style="width:100%">
+  <tr style="background:#ccc">
+    <td>Option</td>
+    <td>Current Count of Votes</td>
+    <td>Action</td>
+  </tr>
+  <tr>
+    <td>{{question.o_1}}</td>
+    <td>{{question.o_1_vote}}</td>
+    <td>
+      <form (submit) = "vote('o_1_vote')">
+        <button type="submit" name="" value="">Vote</button>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td>{{question.o_2}}</td>
+    <td>{{question.o_2_vote}}</td>
+    <td>
+      <form (submit) = "vote('o_2_vote')">
+        <button type="subit" name="" value="">Vote</button>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td>{{question.o_3}}</td>
+    <td>{{question.o_3_vote}}</td>
+    <td>
+      <form (submit) = "vote('o_3_vote')">
+        <button type="subit" name="" value="">Vote</button>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td>{{question.o_4}}</td>
+    <td>{{question.o_4_vote}}</td>
+    <td>
+      <form (submit) = "vote('o_4_vote')">
+        <button type="subit" name="" value="">Vote</button>
+      </form>
+    </td>
+  </tr>
+</table>

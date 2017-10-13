@@ -1,0 +1,30 @@
+<p>
+  <!-- {{question | json}} -->
+</p>
+
+<div style="padding:7px">
+  <a [routerLink]="['/browse', id]">Questions</a> |
+
+  <a [routerLink]="['/answerquestion', q_id, 'byuser', id]">Answer</a> |
+
+
+
+  <a [routerLink]="['/']">Log Off</a>
+<hr>
+
+<h1>  {{question.question}}</h1>
+<h2> Details: {{question.details}}</h2>
+
+<ul *ngFor="let answer of question.Answers">
+
+<li>
+  User: {{answer.User}}<br>
+  Answer: {{answer.answer}}<br>
+  details: {{answer.details}}<br>
+  likes: {{answer.likes}}<br>
+  <button (click)="like(answer._id)" name="button">Like</button>
+</li>
+</ul>
+
+
+</div>

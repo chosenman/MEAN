@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 900a0fe57467de06a2aa1168cd80270c81f15a47 chosenman <chosenman2008@gmail.com> 1501019760 -0700	commit (initial): qa
+900a0fe57467de06a2aa1168cd80270c81f15a47 0b1dd40b2d6328acf464d9bbdb9fea8931e5b81c chosenman <chosenman2008@gmail.com> 1501024310 -0700	commit: qa
+0b1dd40b2d6328acf464d9bbdb9fea8931e5b81c 16a30b1ed72c98d7472e25975116533e40f8bbb8 chosenman <chosenman2008@gmail.com> 1501028098 -0700	commit: search works only if you put entire question
+16a30b1ed72c98d7472e25975116533e40f8bbb8 f4cf46664df9cc04ae9923cf89557c48dd57d9b2 chosenman <chosenman2008@gmail.com> 1501028833 -0700	commit: search works 100% as required

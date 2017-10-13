@@ -1,0 +1,37 @@
+<h3>Login</h3>
+
+
+<form (submit) = "login()" #loginForm="ngForm">
+  Email: <input type="text"
+  required
+  name="user.email"
+  [(ngModel)]="user.email"
+  #emailField="ngModel"
+  >
+  <span [hidden]="emailField.valid">
+    <span style="color:red">this field is required</span>
+  </span>
+
+  <br>
+  Password: <input type="text"
+  required
+  name="user.password"
+  [(ngModel)]="user.password"
+  #pwField="ngModel"
+  >
+  <span [hidden]="pwField.valid">
+    <span style="color:red">this field is required</span>
+  </span>
+  <span [hidden]="!answer" style="color:red">
+    <br>
+    <div style="margin-left:300px;">{{answer}}</div>
+  </span>
+
+  <br>
+
+  <input [disabled]='!loginForm.valid' type="submit" name="" value="Login">
+
+</form>
+
+{{user.email}}<br>
+{{user.password}}

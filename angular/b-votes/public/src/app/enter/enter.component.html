@@ -1,0 +1,32 @@
+
+
+<form (submit) = "enter()" #enterForm="ngForm">
+
+
+
+  <!-- Email   -->
+  Name: <input type="text"
+  required
+  minlength="3"
+  maxlength="24"
+
+  name="name"
+  [(ngModel)]="name"
+  #nameField="ngModel"
+  >
+  <span *ngIf="!nameField.valid" style="color:red">
+    This field is required
+  </span>
+
+
+  <br>
+  <span [hidden]="!answer" style="color:red">
+    <br>
+    <div style="margin-left:300px;">{{answer}}</div>
+  </span>
+
+  <input [disabled]='!enterForm.valid' type="submit" name="" value="Enter">
+
+</form>
+
+{{user.name}}

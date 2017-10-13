@@ -1,0 +1,56 @@
+<a href="/questions" style="float:right">Cancel</a>
+
+<h1>Put the question and options here</h1>
+
+<form (submit) = "newQuestion()" #aForm="ngForm">
+
+  <!-- question   -->
+  Question: <input type="text" width="100%" required style="width:50%;"
+  minlength="8"
+  name="question.text"
+  [(ngModel)]="question.text"
+  #aField="ngModel"
+  >
+  <span *ngIf="!aField.valid" style="color:red"> This field is required, min 8 chars
+  </span> <br>
+<hr>
+
+  Option 1: <input type="text" width="100%" required
+  minlength="3"
+  name="question.o1"
+  [(ngModel)]="question.o1"
+  #o1Field="ngModel"
+  >
+  <span *ngIf="!o1Field.valid" style="color:red"> This field is required, min 3 chars
+  </span> <br>
+
+  Option 2: <input type="text" width="100%" required
+  minlength="3"
+  name="question.o2"
+  [(ngModel)]="question.o2"
+  #o2Field="ngModel"
+  >
+  <span *ngIf="!o2Field.valid" style="color:red"> This field is required, min 3 chars
+  </span> <br>
+
+  Option 3: <input type="text" width="100%" required
+  minlength="3"
+  name="question.o3"
+  [(ngModel)]="question.o3"
+  #o3Field="ngModel"
+  >
+  <span *ngIf="!o3Field.valid" style="color:red"> This field is required, min 3 chars
+  </span> <br>
+
+  Option 4: <input type="text" width="100%" required
+  minlength="3"
+  name="question.o4"
+  [(ngModel)]="question.o4"
+  #o4Field="ngModel"
+  >
+  <span *ngIf="!o4Field.valid" style="color:red"> This field is required, min 3 chars
+  </span> <br>
+
+
+<input [disabled]='!aForm.valid' type="submit" name="" value="Create Poll">
+</form>

@@ -1,0 +1,119 @@
+{{db_user | json}}
+<div style="padding:7px">
+  <a [routerLink]="['/browse', id]">Browse</a> |
+  <a [routerLink]="['/listings', id]">My Listings</a> |
+  <a [routerLink]="['/']">Log Off</a>
+
+</div>
+
+<div style="">
+<h1>My Listings</h1>
+    <div class="bla">
+      <h2>Create Listing</h2>
+      <form (submit)="createNewBike()" #createForm="ngForm">
+        <table style="width:100%;">
+          <tr>
+            <td style="width:300px;">
+              <!-- image  -->
+              Image:<br>
+              <input style="width:100%" type="text"
+              required
+              name="newBike.img"
+              value=""
+              [(ngModel)]="newBike.img"
+              #imgField="ngModel"
+              ><br>
+              <span [hidden]="imgField.valid">
+                <span style="color:red">this field is required</span>
+              </span>
+              <span *ngIf="newBike.img">
+                <img src="{{newBike.img}}" alt="" style="width:300px;">
+              </span>
+
+            </td>
+            <td>
+              <!-- Title  -->
+              title:<br>
+              <input style="width:100%"  type="text"
+              required
+              name="newBike.title"
+              value=""
+              [(ngModel)]="newBike.title"
+              #titleField="ngModel"
+              ><br>
+              <span [hidden]="titleField.valid">
+                <span style="color:red">this field is required</span>
+              </span>
+              <br>
+              <!-- Description  -->
+              Description:<br>
+              <textarea style="width:100%" rows="10" type="text"
+              required
+              name="newBike.description"
+              value=""
+              [(ngModel)]="newBike.description"
+              #descriptionField="ngModel"
+              ></textarea>
+              <br>
+              <span [hidden]="descriptionField.valid">
+                <span style="color:red">this field is required</span>
+              </span>
+              <br>
+            </td>
+            <td style="width:300px;">
+                <!-- Price  -->
+                Price:<br>
+                <input  type="text"
+                required
+                name="newBike.price"
+                value=""
+                [(ngModel)]="newBike.price"
+                #priceField="ngModel"
+                ><br>
+                <span [hidden]="priceField.valid">
+                  <span style="color:red">this field is required</span>
+                </span>
+                <br>
+                <!-- Location  -->
+                Location:<br>
+                <input  type="text"
+                required
+                name="newBike.location"
+                value=""
+                [(ngModel)]="newBike.location"
+                #locationField="ngModel"
+                ><br>
+                <span [hidden]="locationField.valid">
+                  <span style="color:red">this field is required</span>
+                </span>
+                <br>
+
+                <input [disabled]='!createForm.valid' type="submit" name="" value="Create">
+            </td>
+          </tr>
+        </table>
+
+      </form>
+    </div>
+
+    <div class="bla">
+      <h2>Edit/Delete Listing</h2>
+      <form (submit)="newBike()">
+
+      </form>
+    </div>
+</div>
+
+
+<style media="screen">
+  .bla table td {
+    padding:8px;
+    vertical-align: top;
+  }
+  .bla {
+    background:#ccc;
+    padding:20px;
+    border: 1px solid black;
+    margin: 5px 0;
+  }
+</style>

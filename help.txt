@@ -1,11 +1,12 @@
 sudo chown -R $(whoami) /usr/local/
 
-
+npm install   /// to init node_modules inside angular project folder
 
 npm init -y
 
 npm install express --save
 npm install body-parser --save
+npm install mongoose --save
 npm install path --save
 
 
@@ -37,12 +38,17 @@ RUN mongo DB
 	>ps -ax | grep mongo
 	>sudo kill {{number on the left from  'sudo mongo' (or if that's not there, just 'mongo')}}
 
-db use my_first_db
+use my_first_db
 db.createCollection('students')
 db.my_first_db.find( { $and: [ { lucky_number: {$lte:7} },  { lucky_number:{$gte:1} }  ] }).pretty()
+
 show collections
+
 db.my_first_db.insert({name: "Eli", home_state: "CA", lucky_number: 11, birthday: {month: 1, day: 12, year: 1985}})
 db.my_first_db.find().pretty()
+
+db.collection_NAME.find().pretty()
+
 db.my_first_db.find({home_state: "CA"}).pretty()
 
 

@@ -1,0 +1,77 @@
+
+<div style="padding:7px">
+  <a [routerLink]="['/browse', id]">Questions</a> |
+  <a [routerLink]="['/browse', id,'new']">ADD Question</a> |
+
+  <a [routerLink]="['/']">Log Off</a>
+
+</div>
+
+<!-- {{allquestions | json}} -->
+
+<div style="background:#ccc">
+  <div class="sform">
+
+
+    <form (submit)="search()" #searchForm="ngForm">
+      <span *ngIf="!searchQuery.valid" style="color:red">
+        This field is 3 chars min
+      </span>
+      <input class="input"
+
+      minlength="3"
+      style="width:85%"
+      name="searchFform.query"
+      [(ngModel)]="searchFform.query"
+      #searchQuery="ngModel"
+      >
+      <input type="submit" name="" [disabled]='!searchForm.valid'
+      value="Sarch"
+      >
+    </form>
+
+
+  </div>
+
+<span *ngIf="!allquestions">
+  No questions found
+</span>
+<span *ngIf="allquestions">
+  <table class="" style="width:100%;">
+    <tr style="font-weight:bold; border-bottom:1px solid black">
+      <td>Question</td>
+      <td>Answers</td>
+      <td>Action</td>
+    </tr>
+    <tr *ngFor="let qustion of allquestions; let i=index">
+      <td>{{qustion.question}}</td>
+      <td>{{qustion.Answers.length}}</td>
+      <td>
+        <a [routerLink]="['/showquestion', qustion._id, 'byuser', id]">Show</a>
+        <a [routerLink]="['/answerquestion', qustion._id, 'byuser', id]">Answer</a>
+      </td>
+    </tr>
+  </table>
+</span>
+
+
+
+</div>
+
+
+<style media="screen">
+  .sform form{
+    padding:20px;
+    text-align: center;
+
+
+  }
+  table td {
+    padding:7px;
+  }
+  .sform input {
+    padding:5px;
+        font-size:1em;
+    border:2px solid black;
+  }
+</style>

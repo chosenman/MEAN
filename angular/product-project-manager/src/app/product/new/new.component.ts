@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ProductService } from '../../http.service';
 
 import { Router, ActivatedRoute, Routes, RouterModule } from '@angular/router';
-
 import { Subscription } from "rxjs/Subscription";
 
 @Component({
